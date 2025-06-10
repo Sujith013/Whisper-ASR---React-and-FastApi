@@ -1,0 +1,31 @@
+
+html, body, #root {
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  background-color:#06213e;
+}
+
+.form{
+  justify-content: center;
+  align-items: center;  
+  padding: 250px;
+}
+
+.button{
+  color: white;
+  margin: 20px 20px;
+  background-color: #031120;
+  border-color: white;
+  border-radius: 8px;
+  border-style: solid;
+}
+
+.trans{
+  color: white;
+  font-size: large;
+  font-weight: bolder;
+  margin-top: 30px;
+}

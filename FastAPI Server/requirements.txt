@@ -1,0 +1,11 @@
+fastapi 
+uvicorn
+numpy
+pandas
+chardet
+librosa
+pydantic
+typing
+transformers
+torch
+python-multipart
