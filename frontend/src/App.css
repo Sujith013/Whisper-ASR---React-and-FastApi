@@ -1,31 +1,161 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f0f0f;
+  color: #fff;
+}
 
-html, body, #root {
+.main-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.hero {
   text-align: center;
-  color: white;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero h1 span {
+  font-weight: 700;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.hero p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features {
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;  
-  background-color:#06213e;
+  gap: 2rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
-.form{
+.upload-section {
+  background: #111;
+  flex: 1;
+  display: flex;
   justify-content: center;
-  align-items: center;  
-  padding: 250px;
+  padding: 4rem 2rem;
 }
 
-.button{
-  color: white;
-  margin: 20px 20px;
-  background-color: #031120;
-  border-color: white;
+.upload-card {
+  background: #181818;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.upload-card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.upload-card p {
+  color: #ccc;
+  margin-top: 0;
+}
+
+.upload-box {
+  display: block;
+  background: #222;
+  border: 2px dashed #444;
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.upload-box:hover {
+  border-color: #888;
+}
+
+.upload-box input {
+  display: none;
+}
+
+.upload-box span {
+  display: block;
+  font-size: 1.1rem;
+  color: #aaa;
+}
+
+.formats {
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+.transcribe-btn {
+  background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.transcribe-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4);
+}
+
+.output {
+  margin-top: 2rem;
+  text-align: left;
+  background: #222;
+  padding: 1rem;
   border-radius: 8px;
-  border-style: solid;
 }
 
-.trans{
-  color: white;
-  font-size: large;
-  font-weight: bolder;
-  margin-top: 30px;
+.output h3 {
+  margin-top: 0;
+}
+
+.output p {
+  margin: 0.5rem 0 0;
+  line-height: 1.6;
+}
+
+.spinner {
+  margin: 2rem auto;
+  border: 4px solid #333;
+  border-top: 4px solid #00c6ff;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.file-name {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #a0a0a0;
+  word-break: break-all;
 }

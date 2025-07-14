@@ -3,14 +3,15 @@ import './App.css';
 import axios from 'axios';
 
 function AudioForm() {
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
   const [transcription, setTranscription] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleFileChange = (event:any) => {
+  const handleFileChange = (event: any) => {
     setFile(event.target.files[0]);
   };
 
-  const handleSubmit = async (event:any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     if (!file) {
@@ -21,33 +22,77 @@ function AudioForm() {
     const formData = new FormData();
     formData.append("file", file);
 
+    setLoading(true); // Start spinner
+
     try {
-      const response = await axios.post("http://127.0.0.1:8000/transcribe-audio/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
+      const response = await axios.post(
+        "http://127.0.0.1:8000/transcribe-audio/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         }
-      });
+      );
 
       console.log("Transcription:", response.data);
       setTranscription(response.data.transcription);
     } catch (error) {
       console.error("Error uploading file:", error);
       alert("Failed to transcribe audio.");
+    } finally {
+      setLoading(false); // Stop spinner
     }
   };
 
   return (
-    <div className='form'>
-      <h2>Upload Audio for Transcription</h2>
-      <form onSubmit={handleSubmit}>
-        <input className='button' type="file" accept="audio/*" onChange={handleFileChange} />
-        <button className='button' type="submit">Transcribe</button>
-      </form>
-      {transcription && (
-        <div className='trans'>
-          <p>Transcription: {transcription}</p>
+    <div className="main-page">
+      <section className="hero">
+        <h1><span>AI Speech </span>Recognition</h1>
+        <p>Transform your audio files into accurate text transcriptions using advanced AI technology.</p>
+        <div className="features">
+          <span>🎵 Multiple Formats</span>
+          <span>⚡ Fast Processing</span>
         </div>
-      )}
+      </section>
+
+      <section className="upload-section">
+        <div className="upload-card">
+          <h2>Upload Your Audio File</h2>
+          <p>Drag and drop your audio file or click to browse</p>
+          <label className="upload-box">
+            <input type="file" accept="audio/*" onChange={handleFileChange} />
+            {file ? (
+              <span className="file-name">📄 {file.name}</span>
+            ) : (
+              <>
+                <span>📤 Drop your audio file here</span>
+                <p className="formats">MP3, WAV, M4A, FLAC</p>
+              </>
+            )}
+          </label>
+
+          <button
+            type="submit"
+            className="transcribe-btn"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            🎙️ Transcribe Audio
+          </button>
+
+          {loading && (
+            <div className="spinner"></div>
+          )}
+
+          {!loading && transcription && (
+            <div className="output">
+              <h3>Transcription:</h3>
+              <p>{transcription}</p>
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 }
