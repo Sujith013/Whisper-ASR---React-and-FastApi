@@ -1,20 +1,19 @@
 from fastapi import FastAPI, File, UploadFile
 import librosa
-import numpy as np
 from transformers import pipeline
 from fastapi.middleware.cors import CORSMiddleware
 import io
+from mangum import Mangum
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 pipe = pipeline("automatic-speech-recognition", model="sujith013/whisper-medium-tamil")
 
@@ -29,3 +28,5 @@ async def transcribe_audio(file: UploadFile = File(...)):
     print(transcription)
 
     return {"filename": file.filename, "transcription": transcription["text"]}
+
+handler = Mangum(app)

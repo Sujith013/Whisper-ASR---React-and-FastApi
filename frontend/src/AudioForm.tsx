@@ -26,11 +26,11 @@ function AudioForm() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/transcribe-audio/",
+        `${process.env.REACT_APP_FASTAPI_IP}/transcribe-audio`,
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data"
           }
         }
       );

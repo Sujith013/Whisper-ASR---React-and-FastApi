@@ -9,3 +9,4 @@ typing
 transformers
 torch
 python-multipart
+mangum
